@@ -7,7 +7,7 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     environment:
-      POSTGRES_URL: postgres://${POSTGRES_USER:-app}:${POSTGRES_PASSWORD}@host.docker.internal:5432/${POSTGRES_DB:-best_employee_app}
-      AUTH_SECRET: ${AUTH_SECRET:?Set AUTH_SECRET in .env}
+      POSTGRES_URL: postgres://jalastinvs:jalastinvs@host.docker.internal:5432/jalastinvs
+      AUTH_SECRET: itsZmgdb6QXQuYyZolBNbiCAP6HO9N1rydPQiJsZWOY=
     ports:
       - "80:3000"
