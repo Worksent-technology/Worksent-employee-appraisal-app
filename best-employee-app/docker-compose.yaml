@@ -1,0 +1,13 @@
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    # Postgres runs natively on the EC2 host (see scripts/setup-ec2.sh), not
+    # as a container. host.docker.internal lets the container reach it.
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      POSTGRES_URL: postgres://${POSTGRES_USER:-app}:${POSTGRES_PASSWORD}@host.docker.internal:5432/${POSTGRES_DB:-best_employee_app}
+      AUTH_SECRET: ${AUTH_SECRET:?Set AUTH_SECRET in .env}
+    ports:
+      - "80:3000"
